@@ -7,7 +7,7 @@ import Navbar from "./components/navbar";
 import LandingPage from "./components/pages/landingPage";
 import HomePage from "./components/pages/homePage";
 import Login from "./components/pages/loginPage";
-import MbtaAlertsPage from "./components/pages/mbtaAlerts";
+import MbtaServicePage from "./components/pages/mbtaService";
 
 import Signup from "./components/pages/registerPage";
 import PrivateUserProfile from "./components/pages/privateUserProfilePage";
@@ -33,7 +33,7 @@ const App = () => {
           <Route exact path="/home" element={<HomePage />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/mbtaAlerts" element={<MbtaAlertsPage />} />
+          <Route exact path="/mbtaService" element={<MbtaServicePage />} />
           <Route path="/privateUserProfile" element={<PrivateUserProfile />} />
         </Routes>
       </UserContext.Provider>

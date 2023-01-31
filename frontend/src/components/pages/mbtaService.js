@@ -28,14 +28,13 @@ function Alerts() {
         color="success"
         className="mx-1 my-2"
         style={{ width: "30rem" }}
-      >
-        <Card.Body>
+      >  
+        <Card.Body>  {/* still called alert.(whatever), calls from service, not alerts */} 
         <Card.Title>{"Red line - " + alert.attributes.description}</Card.Title>
         <Card.Text>{alert.attributes.added_dates_notes}</Card.Text>
         <Card.Text>{alert.attributes.added_dates}</Card.Text>
         <Card.Text>{"Starts " + alert.attributes.rating_start_date}</Card.Text>
         <Card.Text>{"Ends: " + alert.attributes.rating_end_date}</Card.Text>
-        <Card.Text>{}</Card.Text>
         <Card.Text>{"Doesnt Include: " + alert.attributes.removed_dates + " " + alert.attributes.removed_dates_notes}</Card.Text>
         </Card.Body>
       </Card>
