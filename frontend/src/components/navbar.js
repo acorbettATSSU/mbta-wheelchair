@@ -28,6 +28,7 @@ export default function Navbar() {
         <Nav.Link href="/privateUserProfile">Profile</Nav.Link>
         <Nav.Link href="/mbtaService">MBTA Service</Nav.Link>
         <Nav.Link href="/services">Services</Nav.Link>
+        <Nav.Link href="/alexTest">Alex Test</Nav.Link>
       </Nav>
     </Container>
   </ReactNavbar>
