@@ -8,7 +8,7 @@ import LandingPage from "./components/pages/landingPage";
 import HomePage from "./components/pages/homePage";
 import Login from "./components/pages/loginPage";
 import MbtaServicePage from "./components/pages/mbtaService";
-import AlexTest from "./components/pages/alexTest";
+import TestAlex from "./components/pages/TestAlex";
 
 import Signup from "./components/pages/registerPage";
 import PrivateUserProfile from "./components/pages/privateUserProfilePage";
@@ -35,7 +35,7 @@ const App = () => {
           <Route exact path="/home" element={<HomePage />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/alexTest" elements={<AlexTest />} />
+          <Route exact path="/TestAlex" elements={<TestAlex />} />
           <Route exact path="/mbtaService" element={<MbtaServicePage />} />
           <Route exact path="/services" element={<Services />} />
           <Route path="/privateUserProfile" element={<PrivateUserProfile />} />
