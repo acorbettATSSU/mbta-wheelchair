@@ -13,7 +13,7 @@ import Signup from "./components/pages/registerPage";
 import PrivateUserProfile from "./components/pages/privateUserProfilePage";
 import { createContext, useState, useEffect } from "react";
 import getUserInfo from "./utilities/decodeJwt";
-
+//
 export const UserContext = createContext();
 //test change
 //test again
