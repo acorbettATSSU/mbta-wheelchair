@@ -19,7 +19,18 @@ function Services() {
 
 
   return (
+    
     <div>
+      <Card style={{ width: '30rem' }} className="mx-2 my-2">
+        <Card.Body>
+          <Card.Title>Adrian Page</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">Adrian Webpage.  Copied from mbtaService.js</Card.Subtitle>
+          <Card.Text>
+          </Card.Text>
+
+        </Card.Body>
+      </Card>
+
       {alerts.map(alert => (
         <Card
         body
@@ -28,6 +39,7 @@ function Services() {
         className="mx-1 my-2"
         style={{ width: "30rem" }}
       >
+
         <Card.Body>
         <Card.Title>{"Test Line - " + alert.attributes.description}</Card.Title>
         <Card.Text>{alert.attributes.added_dates_notes}</Card.Text>
@@ -39,7 +51,7 @@ function Services() {
       </Card>
       ))}
 
-a
+
         <h1>Red Line Service</h1>
       {alerts.map(alert => (
         <div key={alert.description}>
