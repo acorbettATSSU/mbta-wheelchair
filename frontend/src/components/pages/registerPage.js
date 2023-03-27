@@ -69,6 +69,7 @@ const Register = () => {
             style={backgroundStyling}
           >
             <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <h1 style={labelStyling}>MBTA Wheelchair App</h1>
               <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label style={labelStyling}>Username</Form.Label>
@@ -79,7 +80,7 @@ const Register = () => {
                     placeholder="Enter username"
                   />
                   <Form.Text className="text-muted">
-                    We just might sell your data
+                    
                   </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -91,7 +92,7 @@ const Register = () => {
                     placeholder="Enter Email Please"
                   />
                   <Form.Text className="text-muted">
-                    We just might sell your data
+                    
                   </Form.Text>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
