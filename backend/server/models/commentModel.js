@@ -8,6 +8,13 @@ const commentSchema = new mongoose.Schema(
       required: true,
       label: "username",
     },
+    commentID:{
+      type: Number,
+      required: true,
+      lable: "commentID",
+      unique: true
+    },
+
     comment: {
       type: String,
       required: true,

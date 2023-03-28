@@ -8,7 +8,7 @@ import ReactNavbar from 'react-bootstrap/Navbar';
 // Here, we display our Navbar
 export default function Navbar() {
   // We are pulling in the user's info but not using it for now.
-  // Warning disabled: 
+  // Warning disabled:  
   // eslint-disable-next-line
   const [user, setUser] = useState({})
 
@@ -23,14 +23,17 @@ export default function Navbar() {
     <ReactNavbar bg="dark" variant="dark">
     <Container>
       <Nav className="me-auto">
+        
+        <Nav.Link href="#">MBTA Wheelchair</Nav.Link>
         <Nav.Link href="/">Start</Nav.Link>
         <Nav.Link href="/home">Home</Nav.Link>
         <Nav.Link href="/privateUserProfile">Profile</Nav.Link>
         <Nav.Link href="/mbtaService">MBTA Service</Nav.Link>
         <Nav.Link href="/services">Services</Nav.Link>
+        <Nav.Link href="/comment">Comments</Nav.Link>
         
         
-        <Nav.Link href="/alex">Alex</Nav.Link>
+        <Nav.Link href="/alex">.</Nav.Link>  
       </Nav>
     </Container>
   </ReactNavbar>
