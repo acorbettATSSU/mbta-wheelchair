@@ -97,6 +97,7 @@ const Register = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                   <Form.Label style={labelStyling}>Password</Form.Label>
+                  <Form.Label style={labelStyling}>(min. 8 characters)</Form.Label>
                   <Form.Control
                     type="password"
                     name="password"
