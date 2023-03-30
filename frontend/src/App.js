@@ -10,6 +10,8 @@ import Login from "./components/pages/loginPage";
 import MbtaServicePage from "./components/pages/mbtaService";
 import Alex from "./components/pages/alex"
 
+
+import Comment from "./components/pages/comment"
 import Signup from "./components/pages/registerPage";
 import PrivateUserProfile from "./components/pages/privateUserProfilePage";
 import { createContext, useState, useEffect } from "react";
@@ -37,6 +39,7 @@ const App = () => {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/alex" element={<Alex />} />
           
+          <Route exact path = "/comment" element={<Comment/>} />
           <Route exact path="/mbtaService" element={<MbtaServicePage />} />
           <Route exact path="/services" element={<Services />} />
           <Route path="/privateUserProfile" element={<PrivateUserProfile />} />
