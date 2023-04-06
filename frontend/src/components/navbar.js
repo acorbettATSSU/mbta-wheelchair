@@ -3,6 +3,9 @@ import getUserInfo from '../utilities/decodeJwt';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import ReactNavbar from 'react-bootstrap/Navbar';
+import Card from 'react-bootstrap/Card';
+import './navbar.css'; 
+import './mystyles.css'; 
 
 
 // Here, we display our Navbar
@@ -20,23 +23,23 @@ export default function Navbar() {
   // we have an issue with getUserInfo() returning null after a few minutes
   // it seems.
   return (
-    <ReactNavbar bg="dark" variant="dark">
-    <Container>
-      <Nav className="me-auto">
-        
-        <Nav.Link href="#">MBTA Wheelchair</Nav.Link>
-        <Nav.Link href="/">Start</Nav.Link>
-        <Nav.Link href="/home">Home</Nav.Link>
-        <Nav.Link href="/privateUserProfile">Profile</Nav.Link>
-        <Nav.Link href="/mbtaService">MBTA Service</Nav.Link>
-        <Nav.Link href="/services">Services</Nav.Link>
-        <Nav.Link href="/comment">Comments</Nav.Link>
-        
-        
-        <Nav.Link href="/alex">.</Nav.Link>  
-      </Nav>
-    </Container>
-  </ReactNavbar>
-
+    <ReactNavbar bg="dark" variant="dark" id="my-navbar">
+      <Container>
+        <Nav className="me-auto align-items-center">
+        <Card className="bg-dark text-white p-.5">
+        <Card.Title id="mbtawheels">MBTA Wheelchair</Card.Title>
+        </Card>
+          <Nav.Link href="/home">Home</Nav.Link>
+          <Nav.Link href="/privateUserProfile">Profile</Nav.Link>
+          <Nav.Link href="/mbtaService">MBTA Service</Nav.Link>
+          <Nav.Link href="/services">Services</Nav.Link>
+          <Nav.Link href="/comment">Comments</Nav.Link>
+          <Nav.Link href="/alex">.</Nav.Link>  
+        </Nav>
+        <Nav className="justify-content-end">
+          <Nav.Link href="/" id="RegisterandLogin">Register/Login</Nav.Link>
+        </Nav>
+      </Container>
+    </ReactNavbar>
   );
 }

@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 
 
+
 //link to service
 //http://localhost:8096/privateUserProfile
 
@@ -68,12 +69,20 @@ const PrivateUserProfile = () => {
   // 	<span><b>{<FollowerCount username = {username}/>}</b></span>&nbsp;
   // <span><b>{<FollowingCount username = {username}/>}</b></span>;
   if (!user) return (<div><h4>Log in to view this page.</h4></div>)
+  const { id, email, username, password } = user
   return (
+    
     <div class="container">
-      <div class="col-md-12 text-right">
+      <div class="col-md-12 text-center">
         <h1>{user && user.username}</h1>
-        <div class="col-md-12 text-right">
+        <div class="col-md-12 text-center">
+          <br></br>
           <>
+                <h3>
+                    Welcome to the MBTA Wheelchair App, 
+                    <span className='username'> @{username}</span>
+                </h3>
+                <br></br>
           <Button className="me-2" href="/editUserPage">
               Change Password
             </Button>
