@@ -74,8 +74,8 @@ const PrivateUserProfile = () => {
         <h1>{user && user.username}</h1>
         <div class="col-md-12 text-right">
           <>
-          <Button className="me-2" onClick={handleShow}>
-              Change Password (Doesn't Work)
+          <Button className="me-2" href="/editUserPage">
+              Change Password
             </Button>
             <Modal
               show={show}
