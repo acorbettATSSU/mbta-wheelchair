@@ -25,7 +25,17 @@ const HomePage = () => {
                     Welcome to the MBTA Wheelchair app, 
                     <span className='username'> @{username}</span>
                 </h3>
+                <br></br>
+                <h5>MBTA News:</h5>
+                <br></br>
+                <br></br>
+                <br></br>
+                <h5>Route News:</h5>
             </div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <button onClick={(e) => handleClick(e)}>
                 Log Out
             </button>

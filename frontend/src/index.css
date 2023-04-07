@@ -1,0 +1,12 @@
+@media (max-width: 768px) {
+  .my-element {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  .my-element {
+    width: 50%;
+  }
+}
+

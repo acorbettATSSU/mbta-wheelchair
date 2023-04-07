@@ -6,8 +6,8 @@ import Col from 'react-bootstrap/Col';
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
 
-
 import Row from 'react-bootstrap/Row';
+
 const CommentPage = () => {
   const [posts, setPosts] = useState([]);
 
@@ -20,61 +20,71 @@ const CommentPage = () => {
         console.error(error);
       });
   }, []);
-    const [user, setUser] = useState({})
-    const navigate = useNavigate()
-    const handleClick = (e) => {
-        e.preventDefault();
-        localStorage.removeItem('accessToken')
-        return navigate('/')
-    }
-    const handleChange = ({ currentTarget: input }) => {
-      
-    };
-    useEffect(() => {
-        setUser(getUserInfo())
-    }, [])
-    const handleSubmit = async (e) => {
-      
-    }
 
+  const [user, setUser] = useState({})
+  const navigate = useNavigate()
 
-    if (!user) return (
-        <div><h4>Please log in or register an account  to view and leave comments.</h4></div>)
-    const { id, email, username, password } = user
-    return (
+  const handleClick = (e) => {
+    e.preventDefault();
+    localStorage.removeItem('accessToken')
+    return navigate('/')
+  }
+
+  const handleChange = ({ currentTarget: input }) => {
     
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center', 
-    }}>
-      
-<Form>
+  };
 
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Label>Commenting as {user && user.username}:</Form.Label>
-        <Form.Control as="textarea" rows={3}
-                type="comment"
-        name="comment"
-        onChange={handleChange}
-        placeholder="Comment"
-      /> 
-        <Button
-                  variant="primary"
-                  type="submit"
-                  onClick={handleSubmit}
-                >
-                  Post
-                </Button>
-      </Form.Group>
-    </Form>
-    <ul>
-      {posts.map(post => (
-        <li>{post.username}: {post.comment}</li>
-      ))}
-    </ul>
+  useEffect(() => {
+    setUser(getUserInfo())
+  }, [])
+
+  const handleSubmit = async (e) => {
+    
+  }
+
+  if (!user) return (
+    <div>
+      <h4>Please log in or register an account  to view and leave comments.</h4>
     </div>
-    )
+  )
+
+  const { id, email, username, password } = user
+
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center', 
+    }}>
+      <Form>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label style={{ fontSize: '1.5rem' }}> Commenting as {user && user.username}:</Form.Label>
+
+          <Form.Control 
+            as="textarea" 
+            rows={5} 
+            type="comment"
+            name="comment"
+            onChange={handleChange}
+            placeholder="Comment"
+            style={{ width: '500px' }}
+          /> 
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Post
+          </Button>
+        </Form.Group>
+      </Form>
+      <ul>
+        {posts.map(post => (
+          <li>{post.username}: {post.comment}</li>
+        ))}
+      </ul>
+    </div>
+  )
 }
 
 export default CommentPage
