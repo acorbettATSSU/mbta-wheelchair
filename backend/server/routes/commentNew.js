@@ -3,7 +3,7 @@ const router = express.Router();
 
 const commentModel = require('../models/commentModel')
 
-router.post('/add', async (req, res) => {
+router.post('/addComment', async (req, res) => {
     
     const { username, comment, stopName } = req.body
 

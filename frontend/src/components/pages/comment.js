@@ -1,90 +1,119 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import getUserInfo from '../../utilities/decodeJwt'
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Button from "react-bootstrap/Button";
-import axios from 'axios';
+import React, { useState } from "react";
 
-import Row from 'react-bootstrap/Row';
-
-const CommentPage = () => {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:8081/com/getAllComment')
-      .then(response => {
-        setPosts(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
-
-  const [user, setUser] = useState({})
-  const navigate = useNavigate()
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    localStorage.removeItem('accessToken')
-    return navigate('/')
-  }
-
-  const handleChange = ({ currentTarget: input }) => {
-    
-  };
-
-  useEffect(() => {
-    setUser(getUserInfo())
-  }, [])
+const CommentForm = () => {
+  const [username, setUsername] = useState("");
+  const [stopName, setStationName] = useState("");
+  const [comment, setComment] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (e) => {
-    
-  }
-
-  if (!user) return (
-    <div>
-      <h4>Please log in or register an account  to view and leave comments.</h4>
-    </div>
-  )
-
-  const { id, email, username, password } = user
+    e.preventDefault();
+    const commentData = {
+      username,
+      stopName,
+      comment
+    };
+    try {
+      const response = await fetch("http://localhost:8081/com/addComment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(commentData),
+      });
+      if (response.ok) {
+        // Handle success, show modal
+        setShowModal(true);
+        setUsername("");
+        setStationName("");
+        setComment("");
+      } else {
+        // Handle errors, e.g., show an error message
+        console.error("Failed to submit comment.");
+      }
+    } catch (error) {
+      console.error("Failed to submit comment:", error);
+    }
+  };
 
   return (
-    <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center', 
-    }}>
-      <Form>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Label style={{ fontSize: '1.5rem' }}> Commenting as {user && user.username}:</Form.Label>
-
-          <Form.Control 
-            as="textarea" 
-            rows={5} 
-            type="comment"
-            name="comment"
-            onChange={handleChange}
-            placeholder="Comment"
-            style={{ width: '500px' }}
-          /> 
-          <Button
-            variant="primary"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Post
-          </Button>
-        </Form.Group>
-      </Form>
-      <ul>
-        {posts.map(post => (
-          <li>{post.username}: {post.comment}</li>
-        ))}
-      </ul>
+    <div className="container mt-4">
+      <h3>Add Comment</h3>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            className="form-control"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="stationName">Station Name:</label>
+          <input
+            type="text"
+            id="stationName"
+            className="form-control"
+            value={stopName}
+            onChange={(e) => setStationName(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="comment">Comment:</label>
+          <textarea
+            id="comment"
+            className="form-control"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">Submit</button>
+      </form>
+      {showModal && (
+        <div
+          className="modal fade show"
+          tabIndex="-1"
+          role="dialog"
+          style={{ display: "block" }}
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Comment Added</h5>
+                <button
+                  type="button"
+                  className="close"
+                  onClick={() => setShowModal(false)}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <p>Comment has been successfully added.</p>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setShowModal(false)}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {showModal && (
+        <div
+          className="modal-backdrop fade show"
+          onClick={() => setShowModal(false)}
+        />
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default CommentPage
+export default CommentForm;
