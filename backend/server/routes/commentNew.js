@@ -1,21 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const z = require('zod')
-const bcrypt = require("bcrypt");
-//const { newUserValidation } = require('../models/userValidator')
-const commentModle = require('../models/commentModel')
 
-router.post('/addComment', async (req, res) => {
-    const createComment = new commentModle({
+const commentModel = require('../models/commentModel')
+
+router.post('/add', async (req, res) => {
+    
+    const { username, comment, stopName } = req.body
+
+    //creates a new user
+    const createComment = new commentModel({
         username: username,
-        commentID: commentID,
         comment: comment,
-        stopID: stopID
+        stopName: stopName,
     });
 
+   
     try {
-        const saveNewComment = await createComment.save();
-        res.send(saveNewComment);
+        const saveComment = await createComment.save();
+        res.send(saveComment);
     } catch (error) {
         res.status(400).send({ message: "Error trying to create new comment" });
     }

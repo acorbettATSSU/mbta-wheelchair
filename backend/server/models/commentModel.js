@@ -14,10 +14,10 @@ const commentSchema = new mongoose.Schema(
       required: true,
       label: "comment",
     },
-    stop: {
+    stopName: {
       type: String,
       required: true,
-      lable: "stopID"
+      lable: "stopName"
     },
     date: {
       type: Date,
