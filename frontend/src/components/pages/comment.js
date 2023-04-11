@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const CommentForm = () => {
   const [username, setUsername] = useState("");
-  const [stopName, setStationName] = useState("");
+  const [stopName, setStopName] = useState("");
   const [comment, setComment] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [stops, setStops] = useState([]);
+
+  useEffect(() => {
+    const fetchStops = async () => {
+      const response = await fetch(
+        "https://api-v3.mbta.com/stops?filter%5Broute_type%5D=0"
+      );
+      const data = await response.json();
+      setStops(data.data);
+    };
+    fetchStops();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +37,7 @@ const CommentForm = () => {
         // Handle success, show modal
         setShowModal(true);
         setUsername("");
-        setStationName("");
+        setStopName("");
         setComment("");
       } else {
         // Handle errors, e.g., show an error message
@@ -51,14 +63,20 @@ const CommentForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="stationName">Station Name:</label>
-          <input
-            type="text"
-            id="stationName"
+          <label htmlFor="stopName">Stop Name:</label>
+          <select
+            id="stopName"
             className="form-control"
             value={stopName}
-            onChange={(e) => setStationName(e.target.value)}
-          />
+            onChange={(e) => setStopName(e.target.value)}
+          >
+            <option value="">Select a stop</option>
+            {stops.map((stop) => (
+              <option key={stop.id} value={stop.attributes.name}>
+                {stop.attributes.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="form-group">
           <label htmlFor="comment">Comment:</label>
