@@ -8,12 +8,8 @@ const CommentForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [stopsInfo, setStopsInfo] = useState([]);
 
-  const [user, setUser] = useState({})
 
-  useEffect(() => {
-  setUser(getUserInfo())
-  }, [])
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const commentData = {

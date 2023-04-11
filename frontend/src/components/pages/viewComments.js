@@ -62,7 +62,7 @@ const CommentList = () => {
       {comments.map((comment) => (
         <div key={comment.id} style={{ border: "1px solid gray", padding: "10px" }}>
           <h2 style={{ backgroundColor: "gray", padding: "5px" }}>{comment.username}</h2>
-          <p>at {comment.stopName}</p>
+          <h3>at {comment.stopName}</h3>
           <p>{comment.comment}</p>
           <p style={{ fontSize: "12px" }}>Posted: {new Date(comment.date).toLocaleString()}</p>
         </div>
