@@ -11,7 +11,7 @@ import Login from "./components/pages/loginPage";
 import MbtaServicePage from "./components/pages/mbtaService";
 import Alex from "./components/pages/alex"
 
-
+import ViewComment from "./components/pages/viewComments"
 import Comment from "./components/pages/comment"
 import Signup from "./components/pages/registerPage";
 import PrivateUserProfile from "./components/pages/privateUserProfilePage";
@@ -41,7 +41,7 @@ const App = () => {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/alex" element={<Alex />} />
           <Route exact path="/editUserPage" element={<EditUserPage/>} />
-          
+          <Route exact path="/viewComments" element={<ViewComment/>} />
           <Route exact path = "/comment" element={<Comment/>} />
           <Route exact path="/mbtaService" element={<MbtaServicePage />} />
           <Route exact path="/services" element={<Services />} />

@@ -33,7 +33,7 @@ export default function Navbar() {
           <Nav.Link href="/privateUserProfile">Profile</Nav.Link>
           <Nav.Link href="/mbtaService">MBTA Service</Nav.Link>
           <Nav.Link href="/services">Services</Nav.Link>
-          <Nav.Link href="/comment">Comments</Nav.Link>
+          <Nav.Link href="/viewComments">Comments</Nav.Link>
           <Nav.Link href="/alex">.</Nav.Link>  
         </Nav>
         <Nav className="justify-content-end">

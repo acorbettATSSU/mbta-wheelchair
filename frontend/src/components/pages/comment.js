@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//"https://api-v3.mbta.com/stops?filter%5Broute_type%5D=0,1,2"
 
 const CommentForm = () => {
   const [username, setUsername] = useState("");
@@ -7,6 +8,12 @@ const CommentForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [stopsInfo, setStopsInfo] = useState([]);
 
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+  setUser(getUserInfo())
+  }, [])
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const commentData = {
@@ -41,7 +48,7 @@ const CommentForm = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://api-v3.mbta.com/stops?filter%5Broute_type%5D=0,1,2"
+          "https://api-v3.mbta.com/stops?filter%5Broute_type%5D=0,1"
         );
         const data = await response.json();
         const stops = data.data.map((stop) => {
