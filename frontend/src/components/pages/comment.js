@@ -2,21 +2,10 @@ import React, { useState, useEffect } from "react";
 
 const CommentForm = () => {
   const [username, setUsername] = useState("");
-  const [stopName, setStopName] = useState("");
+  const [stopName, setStationName] = useState("");
   const [comment, setComment] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [stops, setStops] = useState([]);
-
-  useEffect(() => {
-    const fetchStops = async () => {
-      const response = await fetch(
-        "https://api-v3.mbta.com/stops?filter%5Broute_type%5D=0"
-      );
-      const data = await response.json();
-      setStops(data.data);
-    };
-    fetchStops();
-  }, []);
+  const [stopsInfo, setStopsInfo] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +26,7 @@ const CommentForm = () => {
         // Handle success, show modal
         setShowModal(true);
         setUsername("");
-        setStopName("");
+        setStationName("");
         setComment("");
       } else {
         // Handle errors, e.g., show an error message
@@ -47,6 +36,33 @@ const CommentForm = () => {
       console.error("Failed to submit comment:", error);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://api-v3.mbta.com/stops?filter%5Broute_type%5D=0,1,2"
+        );
+        const data = await response.json();
+        const stops = data.data.map((stop) => {
+          const name = stop.attributes.name.split(" - ")[0];
+          const line = stop.attributes.description.split(" - ")[1];
+          return {
+            name,
+            line,
+          };
+        });
+        const uniqueStops = [
+          ...new Map(stops.map((item) => [item.name, item])).values(),
+        ];
+        const sortedStops = uniqueStops.sort((a, b) => a.name.localeCompare(b.name));
+        setStopsInfo(sortedStops);
+      } catch (error) {
+        console.error("Failed to fetch stop data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="container mt-4">
@@ -63,17 +79,17 @@ const CommentForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="stopName">Stop Name:</label>
+          <label htmlFor="stationName">Station Name:</label>
           <select
-            id="stopName"
+            id="stationName"
             className="form-control"
             value={stopName}
-            onChange={(e) => setStopName(e.target.value)}
+            onChange={(e) => setStationName(e.target.value)}
           >
             <option value="">Select a stop</option>
-            {stops.map((stop) => (
-              <option key={stop.id} value={stop.attributes.name}>
-                {stop.attributes.name}
+            {stopsInfo.map((stop, index) => (
+              <option key={index} value={stop.name}>
+                {stop.name} ({stop.line})
               </option>
             ))}
           </select>
@@ -87,43 +103,10 @@ const CommentForm = () => {
             onChange={(e) => setComment(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
-      {showModal && (
-        <div
-          className="modal fade show"
-          tabIndex="-1"
-          role="dialog"
-          style={{ display: "block" }}
-        >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Comment Added</h5>
-                <button
-                  type="button"
-                  className="close"
-                  onClick={() => setShowModal(false)}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <p>Comment has been successfully added.</p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => setShowModal(false)}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
       {showModal && (
         <div
           className="modal-backdrop fade show"
