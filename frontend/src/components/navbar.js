@@ -27,14 +27,15 @@ export default function Navbar() {
       <Container>
         <Nav className="me-auto align-items-center">
         <Card className="bg-dark text-white p-.5">
-        <Card.Title id="mbtawheels">MBTA Wheelchair</Card.Title>
+        <Card.Title id="mbtawheels">MBTAccessibility</Card.Title> 
         </Card>
           <Nav.Link href="/home">Home</Nav.Link>
           <Nav.Link href="/privateUserProfile">Profile</Nav.Link>
           <Nav.Link href="/mbtaService">MBTA Service</Nav.Link>
           <Nav.Link href="/services">Services</Nav.Link>
           <Nav.Link href="/viewComments">Comments</Nav.Link>
-          <Nav.Link href="/alex">.</Nav.Link>  
+          <Nav.Link href="/ratings">Station Ratings</Nav.Link>   
+          
         </Nav>
         <Nav className="justify-content-end">
           <Nav.Link href="/" id="RegisterandLogin">Register/Login</Nav.Link>

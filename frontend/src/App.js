@@ -11,6 +11,8 @@ import Login from "./components/pages/loginPage";
 import MbtaServicePage from "./components/pages/mbtaService";
 import Alex from "./components/pages/alex"
 
+import RatingView from "./components/pages/ratingView"
+import NewRating from "./components/pages/newRating"
 import ViewComment from "./components/pages/viewComments"
 import Comment from "./components/pages/comment"
 import Signup from "./components/pages/registerPage";
@@ -46,6 +48,8 @@ const App = () => {
           <Route exact path="/mbtaService" element={<MbtaServicePage />} />
           <Route exact path="/services" element={<Services />} />
           <Route path="/privateUserProfile" element={<PrivateUserProfile />} />
+          <Route path="/newRating" element={<NewRating />} />
+          <Route path="/ratings" element={<RatingView />} />
         </Routes>
       </UserContext.Provider>
     </>

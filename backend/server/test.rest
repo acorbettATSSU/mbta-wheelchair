@@ -9,6 +9,17 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:8081/rating/addRating
+Content-Type: application/json 
+
+{
+    "username" : "testUser",
+    "stopName" : "testStop",
+    "rating" : 5
+}
+
+###
+
 POST http://localhost:8080/user/login
 Content-Type: application/json 
 
@@ -22,9 +33,9 @@ POST http://localhost:8081/com/addComment
 Content-Type: application/json 
 
 {
-    "username" : "postman",
-    "comment": "this is a comment.  postman",
-    "stopName": "postManStop"
+    "username" : "testuser",
+    "comment": "test Comment",
+    "stopName": "testSTop"
 }
 
 ###
@@ -49,6 +60,8 @@ Content-Type: application/json
 {
     "userId" : "635ab8dfc407faf9f73deaf1"
 }
+###
+GET  http://localhost:8081/rating/getAllRating
 
 ###
 GET  http://localhost:8081/user/getUserById
