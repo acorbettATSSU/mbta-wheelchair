@@ -13,7 +13,7 @@ const HomePage = () => {
     useEffect(() => {
         setUser(getUserInfo())
     }, [])
-
+//
 
     if (!user) return (
         <div><h4>Welcome to the MBTA Wheelchair app, please login or register an account.</h4></div>)
