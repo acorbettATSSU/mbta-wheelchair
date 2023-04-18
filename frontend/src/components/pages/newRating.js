@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import getUserInfo from '../../utilities/decodeJwt'
 //  
 const RatingForm = () => {
-  const [username, setUsername] = useState("");
+  const [user, setUser] = useState({})
+  const [username2, setUsername] = useState("");
   const [stopName, setStopName] = useState("");
   const [rating, setRating] = useState("");
   const [stops, setStops] = useState([]);
@@ -30,6 +32,9 @@ const RatingForm = () => {
   };
   // 
   useEffect(() => {
+    setUser(getUserInfo())
+}, [])
+  useEffect(() => {
   fetch("https://api-v3.mbta.com/stops?filter%5Broute_type%5D=0,1")
     .then((response) => response.json())
     .then((data) => {
@@ -43,13 +48,17 @@ const RatingForm = () => {
     })
     .catch((error) => console.error(error));
 }, []);
-
+if (!user) return (
+  <div><h4>Please <a href="/login">login</a> or <a href="/signup">register</a> an account to add ratings</h4></div>)
+const { id, email, username, password } = user
   return (
+    
     <div className="container" style={{ maxWidth: "600px" }}>
+      
       <Form onSubmit={handleSubmit} className="mt-3">
         <Form.Group controlId="username">
           <Form.Label>Username:</Form.Label>
-          <Form.Control type="text" value={username} onChange={handleUsernameChange} />
+          <Form.Control readOnly type="text" value={username} onChange={handleUsernameChange} />
         </Form.Group>
         <Form.Group controlId="stopName">
           <Form.Label>Stop Name:</Form.Label>

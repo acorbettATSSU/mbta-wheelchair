@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Row, Col, Form, Container, Button } from 'react-bootstrap';
 
+
 function StationRatings() {
   const [ratings, setRatings] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [showEmojiRating, setShowEmojiRating] = useState(false);
+  const [showEmojiRating, setShowEmojiRating] = useState(true);
 
   useEffect(() => {
     fetch('http://localhost:8081/rating/getAllRating')
@@ -57,7 +58,7 @@ const getRatingDisplay = rating => {
       case 4.5:
         return '🌕🌕🌕🌕🌗';
       case 5:
-        return '🌕🌕🌝🌕🌕';
+        return '🌕🌕🌕🌕🌕';
       default:
         return '';
     }
@@ -87,7 +88,7 @@ const getRatingDisplay = rating => {
         variant="primary"
         onClick={() => setShowEmojiRating(!showEmojiRating)}
       >
-        {showEmojiRating ? 'Show number rating' : 'Show emoji rating'}
+        {showEmojiRating ? 'Show number rating' : 'Hide Number Rating'}
       </Button>
     </Col>
   </Row>

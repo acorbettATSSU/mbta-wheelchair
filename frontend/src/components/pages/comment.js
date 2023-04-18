@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 //"https://api-v3.mbta.com/stops?filter%5Broute_type%5D=0,1,2"
-
+import getUserInfo from '../../utilities/decodeJwt'
 const CommentForm = () => {
-  const [username, setUsername] = useState("");
+  const [username2, setUsername] = useState("");
+  const [user, setUser] = useState({})
   const [stopName, setStationName] = useState("");
   const [comment, setComment] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -39,7 +40,9 @@ const CommentForm = () => {
       console.error("Failed to submit comment:", error);
     }
   };
-
+  useEffect(() => {
+    setUser(getUserInfo())
+}, [])
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -66,7 +69,9 @@ const CommentForm = () => {
     };
     fetchData();
   }, []);
-
+  if (!user) return (
+    <div><h4>Please <a href="/login">login</a> or <a href="/signup">register</a> an account to leave comments</h4></div>)
+  const { id, email, username, password } = user
   return (
     <div className="container mt-4">
       <h3>Add Comment</h3>
