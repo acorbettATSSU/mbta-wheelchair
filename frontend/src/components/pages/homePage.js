@@ -22,7 +22,7 @@ const HomePage = () => {
         <>
             <div>
                 <h3>
-                    Welcome to the MBTA Wheelchair app, 
+                    Welcome to the MBTA Wheelchair app,   {id}
                     <span className='username'> @{username}</span>
                 </h3>
                 <br></br>
