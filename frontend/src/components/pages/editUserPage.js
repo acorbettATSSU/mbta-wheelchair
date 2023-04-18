@@ -19,17 +19,14 @@ const EditUserPage = () =>{
     const {username, email, password} = form
     const newErrors = {}
     // username validation checks
-    if (!username || username === '') newErrors.name = 'Input a valid username'
-    else if (username.length < 6) newErrors.name = 'Username must be at least 6 characters'
+    if (username && username.length < 6) newErrors.name = 'Username must be at least 6 characters'
     // email validation checks
-    if (!email || email === '') newErrors.email = 'Input a valid email address'
-    if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Input a valid email address'
+    if (email && !/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Input a valid email address'
     // password validation checks
-    if (!password || password === '') newErrors.password = 'Input a valid password'
-    else if (password.length < 8) newErrors.password = 'Password must be at least 8 characters'
+    if (password && password.length < 8) newErrors.password = 'Password must be at least 8 characters'
     return newErrors
   }
-
+  
   // initialize form values and get userId on render
   const [form, setValues] = useState({userId : "", username: "", email: "", password: "" })
   useEffect(() => {
@@ -38,12 +35,16 @@ const EditUserPage = () =>{
 
   // handle form field changes
   const handleChange = ({ currentTarget: input }) => {
-    setValues({ ...form, [input.id]: input.value });
-    if ( !!errors[input] ) setErrors({
-      ...errors,
-      [input]: null
-    })
+    const { id, value } = input;
+    setValues({ ...form, [id]: value });
+    if (!!errors[id]) {
+      setErrors({
+        ...errors,
+        [id]: null,
+      });
+    }
   };
+  
 
   // handle form submission with submit button
   const handleSubmit = async (event) => {
@@ -127,11 +128,42 @@ const EditUserPage = () =>{
               { errors.password }
              </Form.Control.Feedback>
           </Form.Group>
+          
+          <Form.Group className="mb-3" controlId="formFavLine">
+  <Form.Label>Favorite Line</Form.Label>
+  <Form.Select
+    aria-label="Select your favorite line"
+    id="favline"
+    value={form.favline}
+    onChange={handleChange}
+    isInvalid={!!errors.favline}
+  >
+    <option value="Blue">
+      Blue
+    </option>
+    <option value="Green">
+      Green
+    </option>
+    <option value="Orange">
+      Orange
+    </option>
+    <option value="Red">
+      Red
+    </option>
+    <option value="Silver">
+      Silver
+    </option>
+  </Form.Select>
+  <Form.Control.Feedback type="invalid">
+    {errors.favline}
+  </Form.Control.Feedback>
+</Form.Group>
+
 
         <Row>
           <Col>
           <Button variant="primary" type="submit" onClick={handleSubmit}>
-            Submit
+            Save Changes
           </Button>
           </Col>
 

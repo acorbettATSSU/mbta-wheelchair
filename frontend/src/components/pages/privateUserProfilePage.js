@@ -84,7 +84,7 @@ const PrivateUserProfile = () => {
                 </h3>
                 <br></br>
           <Button className="me-2" href="/editUserPage">
-              Change Password
+              Change Info
             </Button>
             <Modal
               show={show}
