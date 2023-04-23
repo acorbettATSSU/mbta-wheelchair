@@ -8,6 +8,18 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:8081/com/commentEdit
+Content-Type: application/json
+
+{
+    "_id": "64355f316d5cacb289de76f5",
+    "username": "EditTest",
+    "comment": "Edit comment test.",
+    "stopName": "EditStop"
+}
+
+
+###
 
 POST http://localhost:8081/rating/addRating
 Content-Type: application/json 

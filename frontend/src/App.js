@@ -11,6 +11,7 @@ import Login from "./components/pages/loginPage";
 import MbtaServicePage from "./components/pages/mbtaService";
 import Alex from "./components/pages/alex"
 
+import Stops from "./components/pages/stops"
 import RatingView from "./components/pages/ratingView"
 import NewRating from "./components/pages/newRating"
 import ViewComment from "./components/pages/viewComments"
@@ -50,6 +51,8 @@ const App = () => {
           <Route path="/privateUserProfile" element={<PrivateUserProfile />} />
           <Route path="/newRating" element={<NewRating />} />
           <Route path="/ratings" element={<RatingView />} />
+          <Route path="/stops" element={<Stops />} />
+          
         </Routes>
       </UserContext.Provider>
     </>

@@ -12,6 +12,7 @@ const getAllComment = require('./routes/getAllComment')
 const newComment = require('./routes/commentNew')
 const newRating = require('./routes/ratingNew')
 const getAllRating = require('./routes/getAllRatings')
+const commentEdit = require('./routes/commentEdit')
 
 require('dotenv').config();
 const SERVER_PORT = 8081
@@ -29,7 +30,7 @@ app.use('/com',getAllComment)
 app.use('/com',newComment)
 app.use('/rating',getAllRating)
 app.use('/rating',newRating)
-
+app.use('/com',commentEdit)
 
 
 app.listen(SERVER_PORT, (req, res) => {
