@@ -46,10 +46,10 @@ function StopGrid() {
     switch (boardingValue) {
       case 0:
         return 'Not Wheelchair Accessible';
-      case 1:
-        return 'Wheelchair Accessible';
+        case 1:
+          return <img src="handicap-icon.png" alt="Wheelchair Accessible" style={{ width: '24px', height: '24px' }} />;        
       case 2:
-        return 'No data';
+        return 'No accessibility data';
       default:
         return 'Error';
     }
@@ -95,7 +95,7 @@ function StopGrid() {
             <Card>
               <Card.Body>
                 <Card.Title>{stop.description}</Card.Title>
-                <Card.Text>Wheelchair Boarding: {getWheelchairAccessibility(stop.wheelchair_boarding)}</Card.Text>
+                <Card.Text> {getWheelchairAccessibility(stop.wheelchair_boarding)}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
