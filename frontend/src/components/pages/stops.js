@@ -83,8 +83,8 @@ function StopGrid() {
           </Form.Select>
         </Form.Group>
         <Form.Group controlId="search">
-          <Form.Label>Search</Form.Label>
-          <Form.Control type="text" value={searchTerm} onChange={handleSearchTermChange} />
+          <Form.Label>Search</Form.Label>                
+          <Form.Control type="text" value={searchTerm} autoComplete="off" onChange={handleSearchTermChange} />
         </Form.Group>
       </Form>
       <p></p>  {/* adds a gap */}
