@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
+import getUserInfo from '../../utilities/decodeJwt'
 
 
 function Alerts() {
   const [alerts, setAlerts] = useState([]);
-
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     async function fetchData() {
@@ -17,10 +18,14 @@ function Alerts() {
     }
     fetchData();
   }, []);
+  useEffect(() => {
+    setUser(getUserInfo())
+}, [])
 
-
+const { id, email, username, password, favline } = user
   return (
     <div>
+      <p>faveline - {user.favline}</p>
       {alerts.map(alert => (
         <Card
         body
