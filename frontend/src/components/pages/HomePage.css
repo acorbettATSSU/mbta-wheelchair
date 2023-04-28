@@ -1,0 +1,27 @@
+.mbta-news-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.mbta-news-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mbta-news-item {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.mbta-news-header {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.mbta-news-description {
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
