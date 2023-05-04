@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 const CommentList = () => {
   const [comments, setComments] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+
 
   useEffect(() => {
     fetch("http://localhost:8081/com/getAllComment")
@@ -14,8 +17,11 @@ const CommentList = () => {
           return dateB - dateA;
         });
         setComments(sortedComments);
+        const uniqueStops = [...new Set(data.map((comment) => comment.stopName))];
+        setSuggestions(uniqueStops);
       });
   }, []);
+  
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -26,9 +32,25 @@ const CommentList = () => {
           -1
       );
       setComments(filteredComments);
-      setSearchTerm("");
+    } else {
+      fetch("http://localhost:8081/com/getAllComment")
+        .then((response) => response.json())
+        .then((data) => {
+          const sortedComments = data.sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateB - dateA;
+          });
+          setComments(sortedComments);
+        });
     }
+  
+    const filteredSuggestions = suggestions.filter(
+      (stop) => stop.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
+    );
+    setSuggestions(filteredSuggestions);
   };
+  
 
   const handleReset = () => {
     fetch("http://localhost:8081/com/getAllComment")
@@ -48,12 +70,20 @@ const CommentList = () => {
     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px", padding: "20px" }}>
       <div style={{ gridColumn: "1 / -1", marginBottom: "20px" }}>
         <form onSubmit={handleSearch} style={{ display: "flex" }}>
-          <input
-            type="text"
-            placeholder="Search by stop name"
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-            style={{ flex: "1", marginRight: "10px", padding: "5px" }}
+        <input
+  type="text"
+  placeholder="Search by stop name"
+  value={searchTerm}
+  onChange={(event) => setSearchTerm(event.target.value)}
+  style={{ flex: "1", marginRight: "10px", padding: "5px" }}
+  list="stops"
+/>
+<datalist id="stops">
+  {suggestions.map((stop, index) => (
+    <option key={index} value={stop} />
+  ))}
+</datalist>
+
           />
           <button type="submit" style={{ padding: "5px" }}>Search</button>
           <button type="button" onClick={handleReset} style={{ marginLeft: "10px", padding: "5px" }}>Reset</button>

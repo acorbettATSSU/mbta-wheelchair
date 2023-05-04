@@ -30,7 +30,7 @@ export default function Navbar() {
           <Nav.Link href="/home">Home</Nav.Link>
           <Nav.Link href="/privateUserProfile">Profile</Nav.Link>
           <Nav.Link href="/mbtaService">Map</Nav.Link>
-          <Nav.Link href="/stops">Stops</Nav.Link>
+          <Nav.Link href="/stops">Transit</Nav.Link>
           <Nav.Link href="/viewComments">Comments</Nav.Link>
           <Nav.Link href="/ratings">Station Ratings</Nav.Link>   
         </Nav>
