@@ -8,24 +8,12 @@ function Alerts() {
   const [alerts, setAlerts] = useState([]);
   const [user, setUser] = useState({})
 
-  useEffect(() => {
-    async function fetchData() {
-      const result = await axios(
-        //'https://api-v3.mbta.com/alerts?sort=banner&filter%5Bactivity%5D=BOARD%2CEXIT%2CRIDE',
-        'https://api-v3.mbta.com/services?filter%5Broute%5D=Red',
-      );
-      setAlerts(result.data.data);
-    }
-    fetchData();
-  }, []);
-  useEffect(() => {
-    setUser(getUserInfo())
-}, [])
+  
 
 const { id, email, username, password, favline } = user
   return (
     <div>
-      <p>faveline - {user.favline}</p>
+    
       {alerts.map(alert => (
         <Card
         body
@@ -46,7 +34,12 @@ const { id, email, username, password, favline } = user
       ))}
 
           
-        <h1>Red Line service</h1> 
+      
+        <img src="MBTA_Map.png" alt="My Image"></img>
+        
+
+
+
       {alerts.map(alert => (   //All say alerts below, not actualy using it, just named that
         <div key={alert.id}>   
           <h3>{alert.attributes.description}</h3>
@@ -61,6 +54,6 @@ const { id, email, username, password, favline } = user
     </div>
   );
 }
-
+// MBTA_Map.png credits to MBTA.com
 
 export default Alerts;
