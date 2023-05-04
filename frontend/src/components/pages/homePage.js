@@ -8,11 +8,11 @@ const HomePage = () => {
   const [mbtaNews, setMbtaNews] = useState([])
   const navigate = useNavigate()
 
-  const handleClick = (e) => {
+  /*const handleClick = (e) => {
     e.preventDefault()
     localStorage.removeItem('accessToken')
     return navigate('/')
-  }
+  }*/
 
   useEffect(() => {
     setUser(getUserInfo())
@@ -64,11 +64,7 @@ const HomePage = () => {
         </div> 
         <br />
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <button onClick={(e) => handleClick(e)}>Log Out</button>
+      
     </>
   )
 }

@@ -171,28 +171,7 @@ const PrivateUserProfile = () => {
               </Modal.Footer>
             </Modal>
 
-            <Button className="me-2" onClick={handleShow}>
-              Log Out
-            </Button>
-            <Modal
-              show={show}
-              onHide={handleClose}
-              backdrop="static"
-              keyboard={false}
-            >
-              <Modal.Header closeButton>
-                <Modal.Title>Log Out</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>Are you sure you want to Log Out?</Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  Close
-                </Button>
-                <Button variant="primary" onClick={handleLogout}>
-                  Yes
-                </Button>
-              </Modal.Footer>
-            </Modal>
+          
 
           </>
         </div>

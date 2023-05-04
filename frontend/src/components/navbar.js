@@ -6,21 +6,18 @@ import ReactNavbar from 'react-bootstrap/Navbar';
 import Card from 'react-bootstrap/Card';
 import './mystyles.css'; 
 
-
-// Here, we display our Navbar
 export default function Navbar() {
-  // We are pulling in the user's info but not using it for now.
-  // Warning disabled:  
-  // eslint-disable-next-line
   const [user, setUser] = useState({})
 
   useEffect(() => {
     setUser(getUserInfo())
   }, [])
   
-  // if (!user) return null   - for now, let's show the bar even not logged in.
-  // we have an issue with getUserInfo() returning null after a few minutes
-  // it seems.
+  const handleLogout = () => {
+    localStorage.clear();
+    setUser({});
+  };
+
   return (
     <ReactNavbar bg="dark" variant="dark" id="my-navbar" className="my-custom-navbar">
       <Container fluid>
@@ -38,7 +35,10 @@ export default function Navbar() {
           <Nav.Link href="/ratings">Station Ratings</Nav.Link>   
         </Nav>
         <Nav className="justify-content-end">
-          <Nav.Link href="/" id="RegisterandLogin">Register/Login</Nav.Link>
+          {user && user.email ?
+            <Nav.Link onClick={handleLogout} id="logout">Logout</Nav.Link> :
+            <Nav.Link href="/" id="loginPage">Register/Login</Nav.Link>
+          }
         </Nav>
       </Container>
     </ReactNavbar>
