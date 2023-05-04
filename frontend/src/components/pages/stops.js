@@ -45,11 +45,11 @@ function StopGrid() {
   const getWheelchairAccessibility = (boardingValue) => {
     switch (boardingValue) {
       case 0:
-        return 'Not Wheelchair Accessible';
+        return 'No data';
         case 1:
           return <img src="handicap-icon.png" alt="Wheelchair Accessible" style={{ width: '24px', height: '24px' }} />;        
       case 2:
-        return 'No accessibility data';
+        return 'Not Wheelchair Accessible';
       default:
         return 'Error';
     }

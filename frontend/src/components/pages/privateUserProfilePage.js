@@ -83,7 +83,9 @@ const PrivateUserProfile = () => {
       });
   }, []);
 
-  if (!user) return <div><h4>Log in to view this page.</h4></div>;
+  if (!user.id) return (
+  <div><h4>Log in to view this page.</h4></div>
+  )
   const { id, email, username, password } = user;
   return (
     <div class="container">
