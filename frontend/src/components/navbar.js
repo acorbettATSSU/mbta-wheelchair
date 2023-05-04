@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import getUserInfo from '../utilities/decodeJwt';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -8,6 +9,7 @@ import './mystyles.css';
 
 export default function Navbar() {
   const [user, setUser] = useState({})
+  const location = useLocation();
 
   useEffect(() => {
     setUser(getUserInfo())
@@ -27,12 +29,12 @@ export default function Navbar() {
           </Card>
         </div>
         <Nav className="me-auto align-items-center">
-          <Nav.Link href="/home">Home</Nav.Link>
-          <Nav.Link href="/privateUserProfile">Profile</Nav.Link>
-          <Nav.Link href="/mbtaService">Map</Nav.Link>
-          <Nav.Link href="/stops">Transit</Nav.Link>
-          <Nav.Link href="/viewComments">Comments</Nav.Link>
-          <Nav.Link href="/ratings">Station Ratings</Nav.Link>   
+          <Nav.Link href="/home" active={location.pathname === "/home"}>Home</Nav.Link>
+          <Nav.Link href="/privateUserProfile" active={location.pathname === "/privateUserProfile"}>Profile</Nav.Link>
+          <Nav.Link href="/mbtaService" active={location.pathname === "/mbtaService"}>Map</Nav.Link>
+          <Nav.Link href="/stops" active={location.pathname === "/stops"}>Transit</Nav.Link>
+          <Nav.Link href="/viewComments" active={location.pathname === "/viewComments"}>Comments</Nav.Link>
+          <Nav.Link href="/ratings" active={location.pathname === "/ratings"}>Station Ratings</Nav.Link>   
         </Nav>
         <Nav className="justify-content-end">
           {user && user.email ?

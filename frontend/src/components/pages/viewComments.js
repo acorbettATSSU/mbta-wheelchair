@@ -83,8 +83,6 @@ const CommentList = () => {
     <option key={index} value={stop} />
   ))}
 </datalist>
-
-          />
           <button type="submit" style={{ padding: "5px" }}>Search</button>
           <button type="button" onClick={handleReset} style={{ marginLeft: "10px", padding: "5px" }}>Reset</button>
         </form>

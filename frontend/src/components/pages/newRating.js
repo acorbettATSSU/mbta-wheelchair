@@ -90,7 +90,7 @@ const { id, email, username, password } = user
           <Modal.Title>Comment Added</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Your comment has been successfully added.</p>
+          <p>Your rating has been successfully added.</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
