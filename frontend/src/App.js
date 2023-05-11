@@ -9,7 +9,6 @@ import LandingPage from "./components/pages/landingPage";
 import HomePage from "./components/pages/homePage";
 import Login from "./components/pages/loginPage";
 import MbtaServicePage from "./components/pages/mbtaService";
-import Alex from "./components/pages/alex"
 
 import Stops from "./components/pages/stops"
 import RatingView from "./components/pages/ratingView"
